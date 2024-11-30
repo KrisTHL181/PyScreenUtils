@@ -1,5 +1,5 @@
 import unicodedata
-from screen_util import CursorSaver, getwch, goto, get_cursor_position, get_real_length
+from .screen_util import CursorSaver, getwch, goto, get_cursor_position, get_real_length
 import sys
 
 
@@ -62,7 +62,7 @@ def input(
             user_input.append(char)
             sys.stdout.write(char)
             sys.stdout.flush()
-            if len(user_input) == max_length:
+            if max_length != -1 and len(user_input) >= max_length:
                 break
     result = "".join(user_input)
     clear_input(_start_pos, get_real_length(prompt + result))
